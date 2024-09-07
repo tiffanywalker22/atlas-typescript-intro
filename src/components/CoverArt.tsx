@@ -1,10 +1,14 @@
 import React from 'react';
 import placeholderImg from "../assets/placeholder.svg";
 
-const CoverArt = () => {
+interface CoverArtProps {
+    artwork?: string;
+}
+
+const CoverArt: React.FC<CoverArtProps> = ({ artwork }) => {
     return (
         <div className="flex justify-center items-center h-full pt-20">
-            <img src={placeholderImg} alt="cover art" className="w-64 h-64 object-cover" />
+            <img src={ artwork || placeholderImg} alt="cover art" className="w-64 h-64 object-cover" />
         </div>
     );
 };

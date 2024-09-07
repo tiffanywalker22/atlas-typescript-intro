@@ -1,6 +1,11 @@
 import React from 'react';
 
-const SongTitle = ({ title, artist }) => {
+interface SongTitleProps {
+    title?: string;
+    artist?: string;
+}
+
+const SongTitle: React.FC<SongTitleProps> = ({ title, artist }) => {
     return (
         <div className="text-center">
             <h1 className="text-2xl font-bold">{title || "Tidal Drift"}</h1>
