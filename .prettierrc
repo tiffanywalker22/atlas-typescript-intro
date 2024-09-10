@@ -1,8 +1,3 @@
 {
-  "plugins": ["prettier-plugin-tailwind"],
-  "tailwindcss.sortOrder": "asc",
-  "tailwindcss.purgeLayersByDefault": true,
-  "tailwindcss.purge": {
-    "content": ["./index.html", "./src/**/*.{js,jsx,ts,tsx}"]
-  }
+  "plugins": ["prettier-plugin-tailwind"]
 }
