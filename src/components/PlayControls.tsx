@@ -1,16 +1,17 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 interface PlayControlsProps {
     onPrevious: () => void;
     onNext: () => void;
     isFirstSong: boolean;
     isLastSong: boolean;
+    isShuffle: boolean;
+    toggleShuffle: () => void;
 }
 
-const PlayControls: React.FC<PlayControlsProps> = ({ onPrevious, onNext, isFirstSong, isLastSong }) => {
+export const PlayControls: React.FC<PlayControlsProps> = ({ onPrevious, onNext, isFirstSong, isLastSong, isShuffle, toggleShuffle }) => {
     const [speed, setSpeed] = useState<number>(1);
     const [isPlaying, setIsPlaying] = useState<boolean>(true);
-    const [isShuffle, setIsshuffle] = useState<boolean>(false);
 
     const toggleSpeed = () => {
         setSpeed(prevSpeed => (prevSpeed === 3 ? 1 : prevSpeed + 1));
@@ -18,10 +19,6 @@ const PlayControls: React.FC<PlayControlsProps> = ({ onPrevious, onNext, isFirst
 
     const togglePlayPause = () => {
         setIsPlaying(prevState => !prevState);
-    };
-
-    const toggleShuffle = () => {
-        setIsshuffle(prevState => !prevState);
     };
 
     return (
@@ -66,5 +63,3 @@ const PlayControls: React.FC<PlayControlsProps> = ({ onPrevious, onNext, isFirst
         </div>
     );
 };
-
-export default PlayControls;

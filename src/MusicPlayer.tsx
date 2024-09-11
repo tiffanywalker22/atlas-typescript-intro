@@ -1,17 +1,18 @@
-import { useState, UseEffect, useEffect } from 'react';
-import CurrentlyPlaying from './components/CurrentlyPlaying';
-import Playlist from './components/Playlist';
+import { useState, useEffect } from 'react';
+import { CurrentlyPlaying } from './components/CurrentlyPlaying';
+import { Playlist } from './components/Playlist';
 
-type Song {
+type Song = {
+    id: number;
     title: string;
     artist: string;
     duration: string;
     cover: string;
-}
+};
 
 export default function MusicPlayer() {
     const [createPlaylist, setCreatePlaylist] = useState<Song[]>([]);
-    const [currentlyPlaying, setCurrentlyPlaying] = useState<Song | null>(null);
+    const [currentTrack, setCurrentTrack] = useState<Song | null>(null);
 
     useEffect(() => {
         const fetchPlaylist = async () => {
@@ -21,7 +22,7 @@ export default function MusicPlayer() {
                 setCreatePlaylist(data);
 
                 if (data.length > 0) {
-                    setCurrentlyPlaying(data[0].title);
+                    setCurrentTrack(data[0]);
                 }
             } catch (error) {
                 console.error('error loading the playlist', error);
@@ -30,18 +31,18 @@ export default function MusicPlayer() {
         fetchPlaylist();
     }, []);
 
-    const handleSong = (title: string) => {
-        const selectedTrack = playlist.find(song => song.title === title) || null;
-        setCurrentlyPlaying(selectedTrack);
+    const handleSong = (id: number) => {
+        const selectedTrack = createPlaylist.find(song => song.id === id) || null;
+        setCurrentTrack(selectedTrack);
     };
 
     return (
         <div className="flex flex-col md:flex-row p-8">
             <div className="bg-sage text-blue border-pink p-4 rounded-lg">
-                <CurrentlyPlaying songTitle={currentlyPlaying} />
+                <CurrentlyPlaying songs={createPlaylist} />
             </div>
             <div className="bg-purple text-blue border-l-4 border-pink p-4 rounded-lg">
-                <Playlist currentlyPlaying={currentlyPlaying} onSongSelect={handleSong} playlist={createPlaylist} />
+                <Playlist currentSongId={currentTrack?.id ?? null} onSongSelect={handleSong} playlist={createPlaylist} />
             </div>
         </div>
     );

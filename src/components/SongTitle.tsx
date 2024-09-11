@@ -1,11 +1,6 @@
 import React from 'react';
 
-interface SongTitleProps {
-    title?: string;
-    artist?: string;
-}
-
-const SongTitle: React.FC<SongTitleProps> = ({ title, artist }) => {
+export const SongTitle: React.FC<SongTitleProps> = ({ title, artist }) => {
     return (
         <div className="text-center">
             <h1 className="text-2xl font-bold">{title || "Tidal Drift"}</h1>
@@ -14,4 +9,3 @@ const SongTitle: React.FC<SongTitleProps> = ({ title, artist }) => {
     );
 };
 
-export default SongTitle;

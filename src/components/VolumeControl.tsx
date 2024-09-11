@@ -5,7 +5,7 @@ interface VolumeControlProps {
     setVolume: (value: number) => void;
 }
 
-const VolumeControl: React.FC<VolumeControlProps> = ({ volume, setVolume }) => {
+export const VolumeControl: React.FC<VolumeControlProps> = ({ volume, setVolume }) => {
     return (
         <div className="flex justify-center items-center mt-10">
             <div className='flex items-center space-x-2'>
@@ -25,5 +25,3 @@ const VolumeControl: React.FC<VolumeControlProps> = ({ volume, setVolume }) => {
         </div>
     );
 };
-
-export default VolumeControl;
