@@ -27,11 +27,11 @@ export default function MusicPlayer() {
     }
 
     return (
-        <div className="flex flex-col md:flex-row max-w-screen-md w-full mx-auto p-4 rounded-lg shadow-lg items-stretch md:items-start">
-            <div className=" flex-1 bg-sage text-blue border-pink p-4 rounded-lg flex justify-center h-full">
+        <div className="flex flex-col md:flex-row max-w-screen-md w-full mx-auto p-6 rounded-lg shadow-lg items-stretch md:items-start">
+            <div className=" flex-1 bg-sage text-blue border-pink p-4 rounded-lg flex flex-col h-full">
                 <CurrentlyPlaying songs={createPlaylist} currentSong={currentTrack} />
             </div>
-            <div className="flex-1 bg-purple text-blue border-l-4 border-pink p-4 rounded-lg flex justify-center h-80">
+            <div className="flex-1 bg-purple text-blue border-l-4 border-pink p-4 rounded-lg flex flex-col h-full">
                 <Playlist currentSongId={currentTrack?.id ?? null} onSongSelect={handleSong} playlist={createPlaylist} />
             </div>
         </div>
