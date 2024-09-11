@@ -23,7 +23,7 @@ export const PlayControls: React.FC<PlayControlsProps> = ({ onPrevious, onNext, 
 
     return (
         <div className="flex justify-center gap-4">
-            <button className="p-2 rounded text-black font-bold" onClick={toggleSpeed}>
+            <button className="p-2 rounded text-blue font-bold" onClick={toggleSpeed}>
                 {speed}x
             </button>
             <button className="p-2 rounded" onClick={onPrevious} disabled={isFirstSong}>

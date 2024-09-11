@@ -1,4 +1,4 @@
-import { useState} from 'react';
+import { useEffect, useState} from 'react';
 import { CoverArt } from './CoverArt';
 import { PlayControls } from './PlayControls';
 import { SongTitle } from './SongTitle';
@@ -17,12 +17,26 @@ type CurrentlyPlayingProps = {
 };
 
 export const CurrentlyPlaying: React.FC<CurrentlyPlayingProps> = ({ songs }) => {
-    if (!songs) return null;
-    
     const [currentSongIndex, setCurrentSongIndex] = useState<number>(0);
     const [isShuffle, setIsShuffle] = useState<boolean>(false);
     const [volume, setVolume] = useState<number>(50);
+    
+    useEffect(() => {
+        if (songs && songs.length > 0) {
+            setCurrentSongIndex(prevIndex => {
+                if (prevIndex >= songs.length) {
+                    return songs.length - 1;
+                }
+                return prevIndex;
+            });
+        }
+    }, [songs]);
+
+    if (!songs || songs.length === 0) return null;
+    
     const currentSong = songs[currentSongIndex];
+    if (!currentSong) return null;
+
     const isFirstSong = currentSongIndex === 0;
     const isLastSong = currentSongIndex === songs.length - 1;
 
