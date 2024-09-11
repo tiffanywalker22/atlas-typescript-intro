@@ -75,4 +75,3 @@ export const CurrentlyPlaying: React.FC<CurrentlyPlayingProps> = ({ songs }) => 
         </div>
     );
 };
-
