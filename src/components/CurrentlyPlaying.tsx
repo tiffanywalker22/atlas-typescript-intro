@@ -67,7 +67,7 @@ export const CurrentlyPlaying: React.FC<CurrentlyPlayingProps> = ({ songs }) => 
 
 
     return (
-        <div className="flex flex-col items-center p-6 rounded-lg h-full">
+        <div className="flex flex-col items-center p-6 rounded-lg h-full w-full">
             <CoverArt cover={currentSong.cover} />
             <SongTitle title={currentSong.title} artist={currentSong.artist} />
             <PlayControls onPrevious={handlePrevious} onNext={handleNext} isFirstSong={isFirstSong} isLastSong={isLastSong} isShuffle={isShuffle} toggleShuffle={toggleShuffle} />

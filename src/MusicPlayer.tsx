@@ -1,47 +1,37 @@
 import { useState, useEffect } from 'react';
 import { CurrentlyPlaying } from './components/CurrentlyPlaying';
 import { Playlist } from './components/Playlist';
-
-type Song = {
-    id: number;
-    title: string;
-    artist: string;
-    duration: string;
-    cover: string;
-};
+import { usePlaylistData } from './hooks/usePlaylistData';
 
 export default function MusicPlayer() {
-    const [createPlaylist, setCreatePlaylist] = useState<Song[]>([]);
+    const { data: createPlaylist, loading, error } = usePlaylistData();
     const [currentTrack, setCurrentTrack] = useState<Song | null>(null);
 
     useEffect(() => {
-        const fetchPlaylist = async () => {
-            try {
-                const response = await fetch('https://raw.githubusercontent.com/atlas-jswank/atlas-music-player-api/main/playlist');
-                const data: Song[] = await response.json();
-                setCreatePlaylist(data);
-
-                if (data.length > 0) {
-                    setCurrentTrack(data[0]);
-                }
-            } catch (error) {
-                console.error('error loading the playlist', error);
-            }
-        };
-        fetchPlaylist();
-    }, []);
+        if (createPlaylist.length > 0) {
+            setCurrentTrack(createPlaylist[0])
+        }
+    }, [createPlaylist]);
 
     const handleSong = (id: number) => {
         const selectedTrack = createPlaylist.find(song => song.id === id) || null;
         setCurrentTrack(selectedTrack);
     };
 
+    if (loading) {
+        return <div>Loading... </div>;
+    }
+
+    if (error) {
+        return <div>{error}</div>;
+    }
+
     return (
-        <div className="flex flex-col max-w-screen-md w-full mx-auto p-8 rounded-lg shadow-lg md:flex-row items-stretch md:items-start">
-            <div className="bg-sage text-blue border-pink p-4 rounded-lg flex-1">
-                <CurrentlyPlaying songs={createPlaylist} />
+        <div className="flex flex-col md:flex-row max-w-screen-md w-full mx-auto p-4 rounded-lg shadow-lg items-stretch md:items-start">
+            <div className=" flex-1 bg-sage text-blue border-pink p-4 rounded-lg flex justify-center h-full">
+                <CurrentlyPlaying songs={createPlaylist} currentSong={currentTrack} />
             </div>
-            <div className="bg-purple text-blue border-l-4 border-pink p-4 rounded-lg flex-1">
+            <div className="flex-1 bg-purple text-blue border-l-4 border-pink p-4 rounded-lg flex justify-center h-80">
                 <Playlist currentSongId={currentTrack?.id ?? null} onSongSelect={handleSong} playlist={createPlaylist} />
             </div>
         </div>

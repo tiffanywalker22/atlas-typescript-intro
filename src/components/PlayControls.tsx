@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-interface PlayControlsProps {
+type PlayControlsProps = {
     onPrevious: () => void;
     onNext: () => void;
     isFirstSong: boolean;

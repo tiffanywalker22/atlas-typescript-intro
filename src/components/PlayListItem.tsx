@@ -10,13 +10,13 @@ type PlayListItemProps = {
 
 export const PlayListItem: React.FC<PlayListItemProps> = ({ title, artist, duration, isPlaying, onClick }) => {
     return (
-        <div className={`max-w-lg mx-auto p-4 rounded-lg my-2 cursor-pointer ${isPlaying ? 'bg-pink text-white' : 'bg-sage text-blue'}`}
+        <div className={`flex justify-between items-center p-2 rounded-lg  cursor-pointer ${isPlaying ? 'bg-pink text-white' : 'bg-purple text-blue'}`}
             onClick={onClick}>
-            <div>
-                <h3 className="text-lg font-semibold">{title}</h3>
-                <p className="text-sm text-gray-500">{artist}</p>
+            <div className='flex flex-col'>
+                <h3 className="text-sm font-semibold">{title}</h3>
+                <p className="text-xs text-gray-500">{artist}</p>
             </div>
-            <div className="text-gray-400">
+            <div className="text-gray-400 text-sm">
                 <p>{duration}</p>
             </div>
         </div>
