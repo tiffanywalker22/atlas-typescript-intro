@@ -19,7 +19,12 @@ export const VolumeControl: React.FC<VolumeControlProps> = ({ volume, setVolume 
                     max="100"
                     value={volume}
                     onChange={(e) => setVolume(parseInt(e.target.value))}
-                    className="w-48 h-2 bg-gray-200 rounded-lg cursor-pointer"
+                    className="w-48 h-2 bg-white rounded-lg cursor-pointer accent-pink"
+                    style={{
+                        appearance: 'none',
+                        outline: 'none',
+                        background: `linear-gradient(to right, #E5ADA8 ${volume}%, #7A87B8 ${volume}%)`,
+                    }}
                 />
             </div>
         </div>
