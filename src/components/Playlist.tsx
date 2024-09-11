@@ -20,7 +20,7 @@ type PlayListProps = {
 export const Playlist: React.FC<PlayListProps> = ({ playlist, currentSongId, onSongSelect }) => {
 
     return (
-        <div className='p-8 max-w-md mx-auto'>
+        <div className='p-8 flex flex-col mx-auto rounded-lg h-full '>
             <h1 className='text-2xl font-bold mb-4'>Playlist</h1>
             <ul>
                 {playlist.map((song) => (
